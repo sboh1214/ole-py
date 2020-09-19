@@ -1,6 +1,6 @@
-import ole
+import olefile
 
-with ole.open('./blank.hwp') as f:
-    print(f.list_streams())
-    print('=' * 40)
-    print(f.get_stream('FileHeader').read().decode('ascii'))
+assert olefile.isOleFile('blank.hwp')
+
+with olefile.OleFileIO('blank.hwp') as ole:
+    ole.dumpdirectory()
